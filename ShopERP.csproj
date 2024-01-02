@@ -1,0 +1,45 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Content\Icons\buildingNumberIcon.png" />
+    <None Remove="Content\Icons\cityIcon.png" />
+    <None Remove="Content\Icons\contactIcon.png" />
+    <None Remove="Content\Icons\countryIcon.png" />
+    <None Remove="Content\Icons\plusIcon.png" />
+    <None Remove="Content\Icons\postalCodeIcon.png" />
+    <None Remove="Content\Icons\refreshIcon.png" />
+    <None Remove="Content\Icons\removeIcon.png" />
+    <None Remove="Content\Icons\streetIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="ShowMeTheXAML.MSBuild" Version="2.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Content\Icons\buildingNumberIcon.png" />
+    <Resource Include="Content\Icons\cityIcon.png" />
+    <Resource Include="Content\Icons\contactIcon.png" />
+    <Resource Include="Content\Icons\countryIcon.png" />
+    <Resource Include="Content\Icons\plusIcon.png" />
+    <Resource Include="Content\Icons\postalCodeIcon.png" />
+    <Resource Include="Content\Icons\refreshIcon.png" />
+    <Resource Include="Content\Icons\removeIcon.png" />
+    <Resource Include="Content\Icons\streetIcon.png" />
+  </ItemGroup>
+
+</Project>

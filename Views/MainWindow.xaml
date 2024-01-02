@@ -1,0 +1,77 @@
+﻿<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ShopERP"
+        xmlns:resx="clr-namespace:ShopERP.ViewResources"
+        xmlns:ViewModels="clr-namespace:ShopERP.ViewModels"
+        x:Class="ShopERP.Views.MainWindow"
+        mc:Ignorable="d"
+        Title="Firma" Height="450" Width="800"
+        WindowState="Maximized">
+    <Window.Resources>
+        <ResourceDictionary Source="MainWindowResources.xaml"/>
+    </Window.Resources>
+
+    <!--To incease intelli, attach data-context for design.-->
+    <Window.DataContext>
+        <ViewModels:MainWindowViewModel/>
+    </Window.DataContext>
+
+    <Grid x:Name="grid">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+
+        <Menu Grid.Row="0" Grid.Column="0" Margin="3">
+            <MenuItem Header="{x:Static resx:GlobalResources.Address}"/>
+            <MenuItem Header="{x:Static resx:GlobalResources.Addresses}"/>
+        </Menu>
+
+        <ToolBar Grid.Row="1" Grid.Column="0">
+            <ToggleButton ToolTip="{x:Static resx:GlobalResources.Address}" Command="{Binding OpenAddressView}" Width="32" Height="32" Background="LightBlue" Margin="2"/>
+            <ToggleButton ToolTip="{x:Static resx:GlobalResources.Addresses}" Command="{Binding OpenAddressesView}" Width="32" Height="32" Background="LightBlue" Margin="2"/>
+        </ToolBar>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0">
+                <HeaderedContentControl
+                    Header="Commands"
+                    Background="Aqua"
+                    Content="{Binding Commands}"
+                    ContentTemplate="{StaticResource CommandsTemplate}"
+                    Style="{StaticResource MainHCCStyle}"
+                    />
+
+            </Border>
+            <Border Grid.Column="1">
+                <HeaderedContentControl
+                    Header="Workspace"
+                    Background="Aqua"
+                    Content="{Binding Workspaces}"
+                    ContentTemplate="{StaticResource WorkspacesTemplate}"
+                    Style="{StaticResource MainHCCStyle}"
+                    />
+
+            </Border>
+        </Grid>
+
+        <StatusBar Grid.Row="3">
+            <StatusBarItem>
+                <TextBlock Text="{Binding ActualTime}"/>
+            </StatusBarItem>
+            <StatusBarItem HorizontalAlignment="Right">
+                <TextBlock><Run Text="WSB-NLU"/></TextBlock>
+            </StatusBarItem>
+        </StatusBar>
+
+    </Grid>
+</Window>
