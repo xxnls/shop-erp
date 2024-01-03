@@ -18,6 +18,73 @@ namespace ShopERP.ViewModels
         public ObservableCollection<ProductCategory> ProductCategories { get; set; }
         public ObservableCollection<ProductUnit> ProductUnits { get; set; }
 
+        private int _selectedProductCategoryId;
+        public int SelectedProductCategoryId
+        {
+            get { return _selectedProductCategoryId; }
+            set
+            {
+                if (_selectedProductCategoryId != value)
+                {
+                    _selectedProductCategoryId = value;
+                    OnPropertyChanged(() => SelectedProductCategoryId);
+                }
+            }
+        }
+
+        private int _selectedProductUnitId;
+        public int SelectedProductUnitId
+        {
+            get { return _selectedProductUnitId; }
+            set
+            {
+                if (_selectedProductUnitId != value)
+                {
+                    _selectedProductUnitId = value;
+                    OnPropertyChanged(() => SelectedProductUnitId);
+                }
+            }
+        }
+
+        private string _productName;
+        public string ProductName
+        {
+            get { return _productName; }
+            set
+            {
+                if (_productName != value)
+                {
+                    _productName = value;
+                    OnPropertyChanged(() => ProductName);
+                }
+            }
+        }
+        private int _productPrice;
+        public int ProductPrice
+        {
+            get { return _productPrice; }
+            set
+            {
+                if (_productPrice != value)
+                {
+                    _productPrice = value;
+                    OnPropertyChanged(() => ProductPrice);
+                }
+            }
+        }
+        private int _productQuantity;
+        public int ProductQuantity
+        {
+            get { return _productQuantity; }
+            set
+            {
+                if (_productQuantity != value)
+                {
+                    _productQuantity = value;
+                    OnPropertyChanged(() => ProductQuantity);
+                }
+            }
+        }
         #endregion
         public ProductsViewModel() : base(GlobalResources.Products)
         {
@@ -26,7 +93,16 @@ namespace ShopERP.ViewModels
         }
         public override void Delete()
         {
-            
+            if (SelectedModel != null)
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var address = dbContext.Products.Find(SelectedModel.ProductId);
+                    address.DateDeleted = DateTime.Now;
+                    dbContext.SaveChanges();
+                }
+                Refresh();
+            }
         }
 
         public override void Edit()
@@ -69,7 +145,21 @@ namespace ShopERP.ViewModels
 
         public override void Save()
         {
-            throw new NotImplementedException();
+            using (var dbContext = new DatabaseContext())
+            {
+                var product = new Product
+                {
+                    ProductName = ProductName,
+                    ProductCategoryId = SelectedProductCategoryId,
+                    ProductUnitId = SelectedProductUnitId,
+                    ProductPrice = ProductPrice,
+                    ProductQuantity = ProductQuantity,
+                    DateCreated = DateTime.Now
+                };
+                dbContext.Products.Add(product);
+                dbContext.SaveChanges();
+            }
+            Refresh();
         }
     }
 }
