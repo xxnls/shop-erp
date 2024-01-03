@@ -107,7 +107,22 @@ namespace ShopERP.ViewModels
 
         public override void Edit()
         {
-            
+            if (SelectedModel != null)
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var product = dbContext.Products.Find(SelectedModel.ProductId);
+                    product.ProductName = SelectedModel.ProductName;
+                    product.ProductCategoryId = SelectedModel.ProductCategoryId;
+                    product.ProductUnitId = SelectedModel.ProductUnitId;
+                    product.ProductPrice = SelectedModel.ProductPrice;
+                    product.ProductQuantity = SelectedModel.ProductQuantity;
+                    product.DateEdited = DateTime.Now;
+                    dbContext.SaveChanges();
+                    SelectedModel = null;
+                }
+                Refresh();
+            }
         }
         public override IEnumerable<Product> GetModels()
         {

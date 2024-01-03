@@ -146,6 +146,111 @@
         </DataGrid>
         <!--#endregion-->
 
+        <!--#region Statistics and address info -->
+        <Grid Grid.Row="3">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Statistics -->
+            <GroupBox Header="Statistics" Background="LightGray" BorderBrush="Gray">
+                <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" Orientation="Horizontal">
+                    <Grid x:Name="statistics">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Vertical">
+                            <Label Content="Addresses from Poland:"/>
+                            <Label Content="Addresses from USA:"/>
+                            <Label Content="Addresses from France:"/>
+                            <Label Content="Total Addresses:"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="1" Orientation="Vertical">
+                            <!--<Label Content="{Binding Statistics_PolandCount}"/>
+                            <Label Content="{Binding Statistics_USACount}"/>
+                            <Label Content="{Binding Statistics_FranceCount}"/>
+                            <Label Content="{Binding Statistics_AddressCount}"/>-->
+                        </StackPanel>
+                    </Grid>
+                </StackPanel>
+            </GroupBox>
+
+            <!-- Product info -->
+            <GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Product information">
+                <Grid Margin="5,5,5,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!-- Edit CheckBox -->
+                    <CheckBox x:Name="editCheckBox" Grid.Row="0" Grid.ColumnSpan="8" Content="Enable edit" IsEnabled="True" IsChecked="False" Margin="0,0,0,5"/>
+
+                    <!-- Inputs -->
+                    <Image Grid.Row="1" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/countryIcon.png" Style="{StaticResource EditIcon}"/>
+                    <Label Grid.Row="1" Grid.Column="1" Content="Category: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <ComboBox Grid.Row="1"
+                          Grid.Column="2"
+                          Style="{StaticResource EditComboBox}"
+                          ItemsSource="{Binding ProductCategories}"
+                          DisplayMemberPath="ProductCategoryName"
+                          SelectedValuePath="ProductCategoryId"
+                          SelectedValue="{Binding SelectedModel.ProductCategoryId}"/>
+
+                    <Image Grid.Row="2" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/countryIcon.png" Style="{StaticResource EditIcon}"/>
+                    <Label Grid.Row="2" Grid.Column="1" Content="Category: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <ComboBox Grid.Row="2"
+                          Grid.Column="2"
+                          Style="{StaticResource EditComboBox}"
+                          ItemsSource="{Binding ProductUnits}"
+                          DisplayMemberPath="ProductUnitName"
+                          SelectedValuePath="ProductUnitId"
+                          SelectedValue="{Binding SelectedModel.ProductUnitId}"/>
+
+                    <Image Grid.Row="3" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/streetIcon.png" Style="{StaticResource EditIcon}"/>
+                    <Label Grid.Row="3" Grid.Column="1" Content="Name: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <TextBox Grid.Row="3" Grid.Column="2" Text="{Binding SelectedModel.ProductName}" Style="{StaticResource EditTextBox}"/>
+
+                    <Separator Width="20" Grid.Row="0" Grid.Column="3" Background="Transparent"/>
+                    <Separator Width="20" Grid.Row="1" Grid.Column="3" Background="Transparent"/>
+                    <Separator Width="20" Grid.Row="2" Grid.Column="3" Background="Transparent"/>
+
+                    <Image Grid.Row="1" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/buildingNumberIcon.png" Style="{StaticResource EditIcon}"/>
+                    <Label Grid.Row="1" Grid.Column="5" Content="Price: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <TextBox Grid.Row="1" Grid.Column="6" Text="{Binding SelectedModel.ProductPrice}" Style="{StaticResource EditTextBox}"/>
+
+                    <Image Grid.Row="2" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/postalCodeIcon.png" Style="{StaticResource EditIcon}"/>
+                    <Label Grid.Row="2" Grid.Column="5" Content="Quantity: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <TextBox Grid.Row="2" Grid.Column="6" Text="{Binding SelectedModel.ProductQuantity}" Style="{StaticResource EditTextBox}"/>
+
+                    <!-- Save button -->
+                    <Grid Grid.Column="7" Grid.Row="4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" Content="Save" Command="{Binding EditCommand}" Style="{StaticResource EditButton}" HorizontalAlignment="Right" Margin="0,0,0,5" Padding="3"/>
+                    </Grid>
+                </Grid>
+            </GroupBox>
+        </Grid>
+        <!--#endregion-->
 
     </Grid>
 
