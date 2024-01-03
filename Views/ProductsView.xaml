@@ -52,8 +52,24 @@
             </Button>
         </Grid>
         <!--#endregion-->
-        
-        
+
+        <!--#region DataGrid -->
+        <DataGrid Grid.Row="2"
+          ItemsSource="{Binding Models}"
+          SelectedItem="{Binding SelectedModel}"
+          Style="{StaticResource ModelDataGrid}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ProductId}" CanUserResize="False" Width="auto"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding ProductName}"/>
+                <DataGridTextColumn Header="Category" Binding="{Binding ProductCategory.ProductCategoryName}"/>
+                <DataGridTextColumn Header="Unit" Binding="{Binding ProductUnit.ProductUnitNameShort}"/>
+                <DataGridTextColumn Header="Price" Binding="{Binding ProductPrice}"/>
+                <DataGridTextColumn Header="Quantity" Binding="{Binding ProductQuantity}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <!--#endregion-->
+
+
     </Grid>
 
 </UserControl>

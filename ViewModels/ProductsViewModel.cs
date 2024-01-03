@@ -59,7 +59,12 @@ namespace ShopERP.ViewModels
         }
         public override void Refresh()
         {
-            throw new NotImplementedException();
+            RefreshTime = DateTime.Now.ToString("HH:mm:ss");
+            Models.Clear();
+            foreach (var model in GetModels())
+            {
+                Models.Add(model);
+            }
         }
 
         public override void Save()
