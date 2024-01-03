@@ -53,6 +53,83 @@
         </Grid>
         <!--#endregion-->
 
+        <!--#region Expander -->
+        <Expander x:Name="expander" Grid.Row="1" Style="{StaticResource AddingExpander}">
+            <Grid Margin="5,5,5,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Inputs -->
+                <Image Grid.Row="0" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/countryIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="0" Grid.Column="1" Content="Category: " Margin="0,0,0,5"/>
+                <ComboBox Grid.Row="0"
+                          Grid.Column="2"
+                          Style="{StaticResource AddingComboBox}"
+                          ItemsSource="{Binding ProductCategories}"
+                          DisplayMemberPath="ProductCategoryName"
+                          SelectedValuePath="ProductCategoryId"
+                          SelectedValue="{Binding SelectedProductCategoryId}"/>
+
+                <Image Grid.Row="1" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/countryIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="Category: " Margin="0,0,0,5"/>
+                <ComboBox Grid.Row="1"
+                          Grid.Column="2"
+                          Style="{StaticResource AddingComboBox}"
+                          ItemsSource="{Binding ProductUnits}"
+                          DisplayMemberPath="ProductUnitName"
+                          SelectedValuePath="ProductUnitId"
+                          SelectedValue="{Binding SelectedProductUnitId}"/>
+
+                <Image Grid.Row="2" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/streetIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="2" Grid.Column="1" Content="Name: " Margin="0,0,0,5"/>
+                <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding ProductName}" Style="{StaticResource AddingTextBox}"/>
+
+                <Separator Width="20" Grid.Row="0" Grid.Column="3" Background="Transparent"/>
+                <Separator Width="20" Grid.Row="1" Grid.Column="3" Background="Transparent"/>
+                <Separator Width="20" Grid.Row="2" Grid.Column="3" Background="Transparent"/>
+
+                <Image Grid.Row="0" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/buildingNumberIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="0" Grid.Column="5" Content="Price: " Margin="0,0,0,5"/>
+                <TextBox Grid.Row="0" Grid.Column="6" Text="{Binding ProductPrice}" Style="{StaticResource AddingTextBox}"/>
+
+                <Image Grid.Row="1" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/postalCodeIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="1" Grid.Column="5" Content="Quantity: " Margin="0,0,0,5"/>
+                <TextBox Grid.Row="1" Grid.Column="6" Text="{Binding ProductQuantity}" Style="{StaticResource AddingTextBox}"/>
+
+                <!-- Save buttons -->
+                <Grid Grid.Column="7" Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0" Content="Save" Click="ClearTextboxes_Click" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,0,5" Padding="3"/>
+
+                    <Button Grid.Column="1" Content="Save and close" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="5,0,0,5" Padding="3">
+                        <Button.Style>
+                            <Style TargetType="Button">
+                                <EventSetter Event="Click" Handler="ClearTextboxes_Click"/>
+                                <EventSetter Event="Click" Handler="FoldExpander_Click"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                </Grid>
+            </Grid>
+        </Expander>
+        <!--#endregion-->
+
         <!--#region DataGrid -->
         <DataGrid Grid.Row="2"
           ItemsSource="{Binding Models}"
