@@ -19,4 +19,41 @@
         <viewmodels:ProductsViewModel/>
     </d:UserControl.DataContext>
 
+    <Grid Background="White" Margin="5">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <!--#region Toolbar -->
+        <StackPanel Grid.Row="0" Orientation="Horizontal">
+            <ToggleButton x:Name="addButton" Width="auto">
+                <Image Source="pack://application:,,,/ShopERP;component/Content/Icons/plusIcon.png" Width="22" Height="16"/>
+            </ToggleButton>
+
+            <Button x:Name="removeButton" Width="auto" Margin="5,0,0,0" Command="{Binding DeleteCommand}">
+                <Image Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Width="22" Height="16"/>
+            </Button>
+        </StackPanel>
+        <!-- Right side of toolbar (refresh button, time) -->
+        <Grid HorizontalAlignment="Right" Grid.Row="0" Height="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Column="0" Text="Last refresh:" VerticalAlignment="Center"/>
+            <Label Content="{Binding RefreshTime}" Grid.Column="1"/>
+            <Button x:Name="refreshButton" Grid.Column="2" HorizontalAlignment="Right" Command="{Binding RefreshCommand}">
+                <Image Source="pack://application:,,,/ShopERP;component/Content/Icons/refreshIcon.png" Width="22" Height="16"/>
+            </Button>
+        </Grid>
+        <!--#endregion-->
+        
+        
+    </Grid>
+
 </UserControl>
