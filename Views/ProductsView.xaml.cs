@@ -1,5 +1,4 @@
-﻿using ShopERP.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,13 @@ using System.Windows.Shapes;
 namespace ShopERP.Views
 {
     /// <summary>
-    /// Logika interakcji dla klasy AddressView.xaml
+    /// Interaction logic for ProductsView.xaml
     /// </summary>
-    public partial class AddressView : UserControl
+    public partial class ProductsView : UserControl
     {
-        public AddressView()
+        public ProductsView()
         {
             InitializeComponent();
-            DataContext = new AddressesViewModel();
         }
     }
 }

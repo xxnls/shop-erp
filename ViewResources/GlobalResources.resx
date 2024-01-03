@@ -123,4 +123,10 @@
   <data name="Addresses" xml:space="preserve">
     <value>Addresses</value>
   </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="Products" xml:space="preserve">
+    <value>Products</value>
+  </data>
 </root>

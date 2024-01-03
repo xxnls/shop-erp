@@ -3,12 +3,12 @@
                     xmlns:vm="clr-namespace:ShopERP.ViewModels"
                     xmlns:vw="clr-namespace:ShopERP.Views">
     <!--#region ViewModels -->
-    <DataTemplate DataType="{x:Type vm:AddressViewModel}">
-        <vw:AddressView/>
-    </DataTemplate>
-
     <DataTemplate DataType="{x:Type vm:AddressesViewModel}">
         <vw:AddressesView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:ProductsViewModel}">
+        <vw:ProductsView/>
     </DataTemplate>
     <!--#endregion-->
 
