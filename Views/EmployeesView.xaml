@@ -210,11 +210,11 @@
                               ItemsSource="{Binding EmployeesRoles}"
                               DisplayMemberPath="EmployeeRoleName"
                               SelectedValuePath="EmployeeRoleId"
-                              SelectedValue="{Binding SelectedEmployeeRoleId}"/>
+                              SelectedValue="{Binding SelectedModel.EmployeeRoleId}"/>
 
                     <Image Grid.Row="2" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/cityIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>
                     <Label Grid.Row="2" Grid.Column="1" Content="Address ID: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
-                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding SelectedModel.Address.AddressId}" Style="{StaticResource EditTextBox}"/>
+                    <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding SelectedModel.AddressId}" Style="{StaticResource EditTextBox}"/>
 
                     <Image Grid.Row="3" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/streetIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>
                     <Label Grid.Row="3" Grid.Column="1" Content="First Name: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>

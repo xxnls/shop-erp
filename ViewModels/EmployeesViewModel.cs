@@ -111,21 +111,22 @@ namespace ShopERP.ViewModels
         #region Methods
         public override void Save()
         {
-            //using (var dbContext = new DatabaseContext())
-            //{
-            //    var employee = new Employee
-            //    {
-            //        EmployeeFirstName = EmployeeFirstName,
-            //        EmployeeLastName = EmployeeLastName,
-            //        EmployeeRoleId = SelectedEmployeeRoleId,
-            //        EmployeeWage = EmployeeWage,
-            //        EmployeeSalary = EmployeeSalary,
-            //        EmployeeRoleId = SelectedEmployeeRoleId
-            //    };
-            //    dbContext.Addresses.Add(employee);
-            //    dbContext.SaveChanges();
-            //}
-            //Refresh();
+            using (var dbContext = new DatabaseContext())
+            {
+                var employee = new Employee
+                {
+                    EmployeeRoleId = SelectedEmployeeRoleId,
+                    AddressId = SelectedEmployeeAddressId,
+                    EmployeeFirstName = EmployeeFirstName,
+                    EmployeeLastName = EmployeeLastName,
+                    EmployeeWage = EmployeeWage,
+                    EmployeeSalary = EmployeeSalary,
+                    DateCreated = DateTime.Now
+                };
+                dbContext.Employees.Add(employee);
+                dbContext.SaveChanges();
+            }
+            Refresh();
         }
 
         public override void Delete()
@@ -134,7 +135,7 @@ namespace ShopERP.ViewModels
             {
                 using (var dbContext = new DatabaseContext())
                 {
-                    var employee = dbContext.Addresses.Find(SelectedModel.EmployeeId);
+                    var employee = dbContext.Employees.Find(SelectedModel.EmployeeId);
                     employee.DateDeleted = DateTime.Now;
                     dbContext.SaveChanges();
                 }
@@ -144,7 +145,23 @@ namespace ShopERP.ViewModels
 
         public override void Edit()
         {
-            
+            if (SelectedModel != null)
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var employee = dbContext.Employees.Find(SelectedModel.EmployeeId);
+                    employee.EmployeeFirstName = SelectedModel.EmployeeFirstName;
+                    employee.EmployeeLastName = SelectedModel.EmployeeLastName;
+                    employee.EmployeeWage = SelectedModel.EmployeeWage;
+                    employee.EmployeeSalary = SelectedModel.EmployeeSalary;
+                    employee.EmployeeRoleId = SelectedModel.EmployeeRoleId;
+                    employee.AddressId = SelectedModel.AddressId;
+                    employee.DateEdited = DateTime.Now;
+                    dbContext.SaveChanges();
+                    SelectedModel = null;
+                }
+                Refresh();
+            }
         }
 
         private IEnumerable<EmployeesRole> GetEmployeesRoles()
