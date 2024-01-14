@@ -68,7 +68,12 @@ namespace ShopERP.ViewModels.BaseViewModels
         public abstract void Edit();
         public void Refresh()
         {
-
+            RefreshTime = DateTime.Now.ToString("HH:mm:ss");
+            Models.Clear();
+            foreach (var model in GetModels())
+            {
+                Models.Add(model);
+            }
         }
         public abstract IEnumerable<T> GetModels();
     }

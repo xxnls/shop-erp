@@ -177,17 +177,6 @@ namespace ShopERP.ViewModels
                 return dbContext.Countries.ToList();
             }
         }
-
-        public override void Refresh()
-        {
-            RefreshTime = DateTime.Now.ToString("HH:mm:ss");
-            Models.Clear();
-            foreach (var model in GetModels())
-            {
-                Models.Add(model);
-            }
-            RefreshStatistics();
-        }
         public override void Save()
         {
             using (var dbContext = new DatabaseContext())

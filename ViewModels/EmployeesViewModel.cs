@@ -1,8 +1,11 @@
-﻿using ShopERP.Models;
+﻿using Microsoft.EntityFrameworkCore;
+using ShopERP.Models;
+using ShopERP.Models.Contexts;
 using ShopERP.ViewModels.BaseViewModels;
 using ShopERP.ViewResources;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,6 +15,22 @@ namespace ShopERP.ViewModels
     public class EmployeesViewModel : BaseObjectViewModel<Employee>
     {
         #region Properties and Fields
+        public ObservableCollection<EmployeesRole> EmployeesRoles { get; set; }
+
+        private int _selectedEmployeeRoleId;
+        public int SelectedEmployeeRoleId
+        {
+            get { return _selectedEmployeeRoleId; }
+            set
+            {
+                if (_selectedEmployeeRoleId != value)
+                {
+                    _selectedEmployeeRoleId = value;
+                    OnPropertyChanged(() => SelectedEmployeeRoleId);
+                }
+            }
+        }
+
         private string _employeeFirstName;
         public string EmployeeFirstName
         {
@@ -40,8 +59,8 @@ namespace ShopERP.ViewModels
             }
         }
 
-        private string _employeeWage;
-        public string EmployeeWage
+        private decimal _employeeWage;
+        public decimal EmployeeWage
         {
             get { return _employeeWage; }
             set
@@ -54,8 +73,8 @@ namespace ShopERP.ViewModels
             }
         }
 
-        private string _employeeSalary;
-        public string EmployeeSalary
+        private decimal _employeeSalary;
+        public decimal EmployeeSalary
         {
             get { return _employeeSalary; }
             set
@@ -70,33 +89,47 @@ namespace ShopERP.ViewModels
         #endregion
         public EmployeesViewModel() : base(GlobalResources.Employees)
         {
-
+            EmployeesRoles = new ObservableCollection<EmployeesRole>();
         }
 
         #region Methods
         public override void Save()
         {
-            throw new NotImplementedException();
+            //using (var dbContext = new DatabaseContext())
+            //{
+            //    var employee = new Employee
+            //    {
+            //        EmployeeFirstName = EmployeeFirstName,
+            //        EmployeeLastName = EmployeeLastName,
+            //        EmployeeRoleId = SelectedEmployeeRoleId,
+            //        EmployeeWage = EmployeeWage,
+            //        EmployeeSalary = EmployeeSalary,
+            //        EmployeeRoleId = SelectedEmployeeRoleId
+            //    };
+            //    dbContext.Addresses.Add(employee);
+            //    dbContext.SaveChanges();
+            //}
+            //Refresh();
         }
 
         public override void Delete()
         {
-            throw new NotImplementedException();
+            
         }
 
         public override void Edit()
         {
-            throw new NotImplementedException();
-        }
-
-        public override void Refresh()
-        {
-            throw new NotImplementedException();
+            
         }
 
         public override IEnumerable<Employee> GetModels()
         {
-            throw new NotImplementedException();
+            using (var dbContext = new DatabaseContext())
+            {
+                return dbContext.Employees.Include(item => item.EmployeeRole)
+                                          .Where(employee => employee.DateDeleted == null)
+                                          .ToList();
+            }
         }
         #endregion
     }

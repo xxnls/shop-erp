@@ -84,7 +84,7 @@
                           SelectedValue="{Binding SelectedProductCategoryId}"/>
 
                 <Image Grid.Row="1" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/countryIcon.png" Style="{StaticResource AddingIcon}"/>
-                <Label Grid.Row="1" Grid.Column="1" Content="Category: " Margin="0,0,0,5"/>
+                <Label Grid.Row="1" Grid.Column="1" Content="Unit: " Margin="0,0,0,5"/>
                 <ComboBox Grid.Row="1"
                           Grid.Column="2"
                           Style="{StaticResource AddingComboBox}"

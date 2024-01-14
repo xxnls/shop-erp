@@ -59,8 +59,8 @@ namespace ShopERP.ViewModels
                 }
             }
         }
-        private int _productPrice;
-        public int ProductPrice
+        private decimal _productPrice;
+        public decimal ProductPrice
         {
             get { return _productPrice; }
             set
@@ -146,15 +146,6 @@ namespace ShopERP.ViewModels
             using (var dbContext = new DatabaseContext())
             {
                 return dbContext.ProductUnits.ToList();
-            }
-        }
-        public override void Refresh()
-        {
-            RefreshTime = DateTime.Now.ToString("HH:mm:ss");
-            Models.Clear();
-            foreach (var model in GetModels())
-            {
-                Models.Add(model);
             }
         }
 

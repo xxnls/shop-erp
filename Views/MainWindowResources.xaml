@@ -10,6 +10,10 @@
     <DataTemplate DataType="{x:Type vm:ProductsViewModel}">
         <vw:ProductsView/>
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:EmployeesViewModel}">
+        <vw:EmployeesView/>
+    </DataTemplate>
     <!--#endregion-->
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">
