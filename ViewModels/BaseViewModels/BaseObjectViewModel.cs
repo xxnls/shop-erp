@@ -66,7 +66,10 @@ namespace ShopERP.ViewModels.BaseViewModels
         public abstract void Save();
         public abstract void Delete();
         public abstract void Edit();
-        public abstract void Refresh();
+        public void Refresh()
+        {
+
+        }
         public abstract IEnumerable<T> GetModels();
     }
 }

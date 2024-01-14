@@ -79,6 +79,24 @@ namespace ShopERP.ViewResources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Employee.
+        /// </summary>
+        public static string Employee {
+            get {
+                return ResourceManager.GetString("Employee", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Employees.
+        /// </summary>
+        public static string Employees {
+            get {
+                return ResourceManager.GetString("Employees", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Product.
         /// </summary>
         public static string Product {

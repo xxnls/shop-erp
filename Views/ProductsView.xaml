@@ -165,10 +165,10 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Vertical">
-                            <Label Content="Addresses from Poland:"/>
+                            <!--<Label Content="Addresses from Poland:"/>
                             <Label Content="Addresses from USA:"/>
                             <Label Content="Addresses from France:"/>
-                            <Label Content="Total Addresses:"/>
+                            <Label Content="Total Addresses:"/>-->
                         </StackPanel>
                         <StackPanel Grid.Column="1" Orientation="Vertical">
                             <!--<Label Content="{Binding Statistics_PolandCount}"/>

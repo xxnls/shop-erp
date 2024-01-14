@@ -123,6 +123,12 @@
   <data name="Addresses" xml:space="preserve">
     <value>Addresses</value>
   </data>
+  <data name="Employee" xml:space="preserve">
+    <value>Employee</value>
+  </data>
+  <data name="Employees" xml:space="preserve">
+    <value>Employees</value>
+  </data>
   <data name="Product" xml:space="preserve">
     <value>Product</value>
   </data>

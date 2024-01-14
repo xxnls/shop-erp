@@ -28,12 +28,10 @@
         </Grid.RowDefinitions>
 
         <Menu Grid.Row="0" Grid.Column="0" Margin="3">
-            <MenuItem Header="{x:Static resx:GlobalResources.Address}"/>
             <MenuItem Header="{x:Static resx:GlobalResources.Addresses}"/>
         </Menu>
 
         <ToolBar Grid.Row="1" Grid.Column="0">
-            <ToggleButton ToolTip="{x:Static resx:GlobalResources.Address}" Command="{Binding OpenAddressView}" Width="32" Height="32" Background="LightBlue" Margin="2"/>
             <ToggleButton ToolTip="{x:Static resx:GlobalResources.Addresses}" Command="{Binding OpenAddressesView}" Width="32" Height="32" Background="LightBlue" Margin="2"/>
         </ToolBar>
 
