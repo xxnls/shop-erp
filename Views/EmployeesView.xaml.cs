@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ShopERP.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,14 @@ namespace ShopERP.Views
         public EmployeesView()
         {
             InitializeComponent();
+        }
+        private void FoldExpander_Click(object sender, RoutedEventArgs e)
+        {
+            addButton.IsChecked = false;
+        }
+        private void ClearTextboxes_Click(object sender, RoutedEventArgs e)
+        {
+            ExpanderHelper.ClearTextBoxesInExpander(expander);
         }
     }
 }

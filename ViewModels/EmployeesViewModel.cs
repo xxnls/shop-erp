@@ -16,6 +16,7 @@ namespace ShopERP.ViewModels
     {
         #region Properties and Fields
         public ObservableCollection<EmployeesRole> EmployeesRoles { get; set; }
+        public ObservableCollection<Address> EmployeeAddresses { get; set; }
 
         private int _selectedEmployeeRoleId;
         public int SelectedEmployeeRoleId
@@ -27,6 +28,20 @@ namespace ShopERP.ViewModels
                 {
                     _selectedEmployeeRoleId = value;
                     OnPropertyChanged(() => SelectedEmployeeRoleId);
+                }
+            }
+        }
+
+        private int _selectedEmployeeAddressId;
+        public int SelectedEmployeeAddressId
+        {
+            get { return _selectedEmployeeAddressId; }
+            set
+            {
+                if (_selectedEmployeeAddressId != value)
+                {
+                    _selectedEmployeeAddressId = value;
+                    OnPropertyChanged(() => SelectedEmployeeAddressId);
                 }
             }
         }
@@ -89,7 +104,8 @@ namespace ShopERP.ViewModels
         #endregion
         public EmployeesViewModel() : base(GlobalResources.Employees)
         {
-            EmployeesRoles = new ObservableCollection<EmployeesRole>();
+            EmployeesRoles = new ObservableCollection<EmployeesRole>(GetEmployeesRoles());
+            EmployeeAddresses = new ObservableCollection<Address>(GetAddresses());
         }
 
         #region Methods
@@ -114,7 +130,16 @@ namespace ShopERP.ViewModels
 
         public override void Delete()
         {
-            
+            if (SelectedModel != null)
+            {
+                using (var dbContext = new DatabaseContext())
+                {
+                    var employee = dbContext.Addresses.Find(SelectedModel.EmployeeId);
+                    employee.DateDeleted = DateTime.Now;
+                    dbContext.SaveChanges();
+                }
+                Refresh();
+            }
         }
 
         public override void Edit()
@@ -122,11 +147,28 @@ namespace ShopERP.ViewModels
             
         }
 
+        private IEnumerable<EmployeesRole> GetEmployeesRoles()
+        {
+            using (var dbContext = new DatabaseContext())
+            {
+                return dbContext.EmployeesRoles.ToList();
+            }
+        }
+
+        private IEnumerable<Address> GetAddresses()
+        {
+            using (var dbContext = new DatabaseContext())
+            {
+                return dbContext.Addresses.ToList();
+            }
+        }
+
         public override IEnumerable<Employee> GetModels()
         {
             using (var dbContext = new DatabaseContext())
             {
                 return dbContext.Employees.Include(item => item.EmployeeRole)
+                                          .Include(item => item.Address)
                                           .Where(employee => employee.DateDeleted == null)
                                           .ToList();
             }
