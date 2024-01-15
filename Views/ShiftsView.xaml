@@ -132,27 +132,10 @@
 
             <!-- Statistics -->
             <GroupBox Header="Statistics" Background="LightGray" BorderBrush="Gray">
-                <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" Orientation="Horizontal">
-                    <Grid x:Name="statistics">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Vertical">
-                            <!--<Label Content="Shifts with Total Hours > 8:"/>
-                            <Label Content="Shifts with Total Hours <= 8:"/>
-                            <Label Content="Total Shifts:"/>-->
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Vertical">
-                            <!--<Label Content="{Binding Statistics_ShiftsGreaterThan8}"/>
-                            <Label Content="{Binding Statistics_ShiftsLessThanOrEqual8}"/>
-                            <Label Content="{Binding Statistics_TotalShifts}"/>-->
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
+
             </GroupBox>
 
-			<GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Address information">
+			<GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Shift information">
 				<Grid Margin="5,5,5,0">
 					<Grid.RowDefinitions>
 						<RowDefinition/>
@@ -176,7 +159,7 @@
 
 					<!-- Inputs -->
 					<Image Grid.Row="1" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/contactIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>
-					<Label Grid.Row="1" Grid.Column="1" Content="Salary: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+					<Label Grid.Row="1" Grid.Column="1" Content="Start time: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
 					<TextBox Grid.Row="1" Grid.Column="2" Text="{Binding SelectedModel.ShiftStartTime}"  Style="{StaticResource EditTextBox}"/>
 
 					<Image Grid.Row="2" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/cityIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>

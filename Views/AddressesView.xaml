@@ -179,7 +179,7 @@
                 </StackPanel>
             </GroupBox>
             
-            <!-- Address info -->
+            <!-- Statistics and Model info -->
             <GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Address information">
                 <Grid Margin="5,5,5,0">
                     <Grid.RowDefinitions>

@@ -74,6 +74,10 @@
         <Setter Property="Background" Value="LightGray"/>
     </Style>
 
+    <Style TargetType="CheckBox" x:Key="AddingCheckBox">
+        <Setter Property="Margin" Value="0,6,0,0"/>
+    </Style>
+
     <Style TargetType="Image" x:Key="EditIcon" BasedOn="{StaticResource AddingIcon}">
         <!--For editing-->
         <Style.Triggers>
@@ -125,6 +129,18 @@
     </Style>
 
     <Style TargetType="Button" x:Key="EditButton">
+        <!--For editing-->
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=editCheckBox, Path=IsChecked}" Value="True">
+                <Setter Property="IsEnabled" Value="True"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=editCheckBox, Path=IsChecked}" Value="False">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="CheckBox" x:Key="EditCheckBox" BasedOn="{StaticResource AddingCheckBox}">
         <!--For editing-->
         <Style.Triggers>
             <DataTrigger Binding="{Binding ElementName=editCheckBox, Path=IsChecked}" Value="True">

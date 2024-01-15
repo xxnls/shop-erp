@@ -18,6 +18,10 @@
     <DataTemplate DataType="{x:Type vm:ShiftsViewModel}">
         <vw:ShiftsView/>
     </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
+        <vw:CustomersView/>
+    </DataTemplate>
     <!--#endregion-->
 
     <Style x:Key="MainHCCStyle" TargetType="{x:Type HeaderedContentControl}">

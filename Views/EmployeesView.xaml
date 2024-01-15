@@ -180,7 +180,7 @@
             </GroupBox>
 
             <!-- Model info and editing-->
-            <GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Address information">
+            <GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Employee information">
                 <Grid Margin="5,5,5,0">
                     <Grid.RowDefinitions>
                         <RowDefinition/>

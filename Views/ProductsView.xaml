@@ -146,7 +146,7 @@
         </DataGrid>
         <!--#endregion-->
 
-        <!--#region Statistics and address info -->
+        <!--#region Statistics and Model info -->
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -180,7 +180,7 @@
                 </StackPanel>
             </GroupBox>
 
-            <!-- Product info -->
+            <!-- Model info -->
             <GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Product information">
                 <Grid Margin="5,5,5,0">
                     <Grid.RowDefinitions>
