@@ -16,12 +16,9 @@ using System.Windows.Shapes;
 
 namespace ShopERP.Views
 {
-    /// <summary>
-    /// Interaction logic for ShiftsView.xaml
-    /// </summary>
-    public partial class ShiftsView : UserControl
+    public partial class SuppliersView : UserControl
     {
-        public ShiftsView()
+        public SuppliersView()
         {
             InitializeComponent();
         }

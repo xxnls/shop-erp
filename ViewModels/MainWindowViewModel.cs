@@ -24,6 +24,7 @@ namespace ShopERP.ViewModels
         public ICommand OpenEmployeesView { get => new BaseCommand(() => CreateView(new EmployeesViewModel())); }
         public ICommand OpenShiftsView { get => new BaseCommand(() => CreateView(new ShiftsViewModel())); }
         public ICommand OpenCustomersView { get => new BaseCommand(() => CreateView(new CustomersViewModel())); }
+        public ICommand OpenSuppliersView { get => new BaseCommand(() => CreateView(new SuppliersViewModel())); }
 
         #endregion
 
@@ -67,7 +68,8 @@ namespace ShopERP.ViewModels
                 new (GlobalResources.Products, OpenProductsView),
                 new (GlobalResources.Employees, OpenEmployeesView),
                 new ("Shifts", OpenShiftsView),
-                new ("Customers", OpenCustomersView)
+                new ("Customers", OpenCustomersView),
+                new ("Suppliers", OpenSuppliersView)
             };
         }
 

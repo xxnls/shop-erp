@@ -18,9 +18,13 @@
     <DataTemplate DataType="{x:Type vm:ShiftsViewModel}">
         <vw:ShiftsView/>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
         <vw:CustomersView/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:SuppliersViewModel}">
+        <vw:SuppliersView/>
     </DataTemplate>
     <!--#endregion-->
 
