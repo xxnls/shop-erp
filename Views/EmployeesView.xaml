@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewmodels="clr-namespace:ShopERP.ViewModels"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="282" d:DesignWidth="731">
 
     <UserControl.Resources>
         <ResourceDictionary>
@@ -18,6 +18,7 @@
     <d:UserControl.DataContext>
         <viewmodels:EmployeesViewModel/>
     </d:UserControl.DataContext>
+
     <Grid Background="White" Margin="5">
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
@@ -144,7 +145,7 @@
         </DataGrid>
         <!--#endregion-->
 
-        <!--#region Statistics and address info -->
+        <!--#region Statistics and Model info -->
         <Grid Grid.Row="3">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
@@ -178,7 +179,7 @@
                 </StackPanel>
             </GroupBox>
 
-            <!-- Address info -->
+            <!-- Model info and editing-->
             <GroupBox x:Name="editGroupBox" Style="{StaticResource EditGroupBox}" Grid.Column="1" Header="Address information">
                 <Grid Margin="5,5,5,0">
                     <Grid.RowDefinitions>

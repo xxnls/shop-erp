@@ -10,9 +10,13 @@
     <DataTemplate DataType="{x:Type vm:ProductsViewModel}">
         <vw:ProductsView/>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:EmployeesViewModel}">
         <vw:EmployeesView/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:ShiftsViewModel}">
+        <vw:ShiftsView/>
     </DataTemplate>
     <!--#endregion-->
 
