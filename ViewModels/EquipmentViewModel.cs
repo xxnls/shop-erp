@@ -117,7 +117,7 @@ namespace ShopERP.ViewModels
                     EquipmentLeasedFrom = EquipmentLeasedFrom,
                     DateCreated = DateTime.Now
                 };
-                dbContext.Equipments.Add(equipment);
+                dbContext.Equipment.Add(equipment);
                 dbContext.SaveChanges();
             }
             Refresh();
@@ -129,7 +129,7 @@ namespace ShopERP.ViewModels
             {
                 using (var dbContext = new DatabaseContext())
                 {
-                    var equipment = dbContext.Equipments.Find(SelectedModel.EquipmentId);
+                    var equipment = dbContext.Equipment.Find(SelectedModel.EquipmentId);
                     equipment.DateDeleted = DateTime.Now;
                     dbContext.SaveChanges();
                 }
@@ -143,7 +143,7 @@ namespace ShopERP.ViewModels
             {
                 using (var dbContext = new DatabaseContext())
                 {
-                    var equipment = dbContext.Equipments.Find(SelectedModel.EquipmentId);
+                    var equipment = dbContext.Equipment.Find(SelectedModel.EquipmentId);
                     equipment.EquipmentName = SelectedModel.EquipmentName;
                     equipment.EquipmentAcquireDate = SelectedModel.EquipmentAcquireDate;
                     equipment.EquipmentServiceDate = SelectedModel.EquipmentServiceDate;
@@ -162,7 +162,7 @@ namespace ShopERP.ViewModels
         {
             using (var dbContext = new DatabaseContext())
             {
-                return dbContext.Equipments.Where(e => e.DateDeleted == null).ToList();
+                return dbContext.Equipment.Where(e => e.DateDeleted == null).ToList();
             }
         }
         #endregion

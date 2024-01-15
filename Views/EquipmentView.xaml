@@ -85,6 +85,22 @@
                 <Label Grid.Row="2" Grid.Column="1" Content="Service Date: " Margin="0,0,0,5"/>
                 <DatePicker Grid.Row="2" Grid.Column="2" SelectedDate="{Binding EquipmentServiceDate}" Style="{StaticResource AddingDatePicker}"/>
 
+                <Separator Width="20" Grid.Row="0" Grid.Column="3" Background="Transparent"/>
+                <Separator Width="20" Grid.Row="1" Grid.Column="3" Background="Transparent"/>
+                <Separator Width="20" Grid.Row="2" Grid.Column="3" Background="Transparent"/>
+
+                <Image Grid.Row="0" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="0" Grid.Column="5" Content="Bought Price: " Margin="0,0,0,5"/>
+                <TextBox Grid.Row="0" Grid.Column="6" Text="{Binding EquipmentBoughtPrice}" Style="{StaticResource AddingTextBox}"/>
+
+                <Image Grid.Row="1" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="1" Grid.Column="5" Content="Is Leased: " Margin="0,0,0,5"/>
+                <CheckBox Grid.Row="1" Grid.Column="6" IsChecked="{Binding EquipmentIsLeased}" Style="{StaticResource AddingCheckBox}"/>
+
+                <Image Grid.Row="2" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Style="{StaticResource AddingIcon}"/>
+                <Label Grid.Row="2" Grid.Column="5" Content="Leased From: " Margin="0,0,0,5"/>
+                <TextBox Grid.Row="2" Grid.Column="6" Text="{Binding EquipmentLeasedFrom}" Style="{StaticResource AddingTextBox}"/>
+
                 <!-- Save buttons -->
                 <Grid Grid.Column="7" Grid.Row="3">
                     <Grid.ColumnDefinitions>
@@ -171,6 +187,22 @@
                     <Image Grid.Row="3" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>
                     <Label Grid.Row="3" Grid.Column="1" Content="Service Date: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
                     <DatePicker Grid.Row="3" Grid.Column="2" SelectedDate="{Binding SelectedModel.EquipmentServiceDate}" Style="{StaticResource EditDatePicker}"/>
+
+                    <Separator Width="20" Grid.Row="0" Grid.Column="3" Background="Transparent"/>
+                    <Separator Width="20" Grid.Row="1" Grid.Column="3" Background="Transparent"/>
+                    <Separator Width="20" Grid.Row="2" Grid.Column="3" Background="Transparent"/>
+
+                    <Image Grid.Row="1" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>
+                    <Label Grid.Row="1" Grid.Column="5" Content="Bought Price: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <TextBox Grid.Row="1" Grid.Column="6" Text="{Binding SelectedModel.EquipmentBoughtPrice}" Style="{StaticResource EditTextBox}"/>
+
+                    <Image Grid.Row="2" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>
+                    <Label Grid.Row="2" Grid.Column="5" Content="Is Leased: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <CheckBox Grid.Row="2" Grid.Column="6" IsChecked="{Binding SelectedModel.EquipmentIsLeased}" Style="{StaticResource EditCheckBox}"/>
+
+                    <Image Grid.Row="3" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Style="{StaticResource EditIcon}" Margin="0,0,0,6"/>
+                    <Label Grid.Row="3" Grid.Column="5" Content="Leased From: " Margin="0,0,0,5" Style="{StaticResource EditLabel}"/>
+                    <TextBox Grid.Row="3" Grid.Column="6" Text="{Binding SelectedModel.EquipmentLeasedFrom}" Style="{StaticResource EditTextBox}"/>
 
                     <!-- Save button -->
                     <Grid Grid.Column="7" Grid.Row="4">

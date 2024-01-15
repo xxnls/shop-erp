@@ -30,9 +30,13 @@
     <DataTemplate DataType="{x:Type vm:SalesViewModel}">
         <vw:SalesView/>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:EquipmentViewModel}">
         <vw:EquipmentView/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:ReviewsViewModel}">
+        <vw:ReviewsView/>
     </DataTemplate>
     <!--#endregion-->
 

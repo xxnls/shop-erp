@@ -27,6 +27,7 @@ namespace ShopERP.ViewModels
         public ICommand OpenSuppliersView { get => new BaseCommand(() => CreateView(new SuppliersViewModel())); }
         public ICommand OpenSalesView { get => new BaseCommand(() => CreateView(new SalesViewModel())); }
         public ICommand OpenEquipmentView { get => new BaseCommand(() => CreateView(new EquipmentViewModel())); }
+        public ICommand OpenReviewsView { get => new BaseCommand(() => CreateView(new ReviewsViewModel())); }
 
         #endregion
 
@@ -73,7 +74,8 @@ namespace ShopERP.ViewModels
                 new ("Customers", OpenCustomersView),
                 new ("Suppliers", OpenSuppliersView),
                 new ("Sales", OpenSalesView),
-                new ("Equipment", OpenEquipmentView)
+                new ("Equipment", OpenEquipmentView),
+                new ("Reviews", OpenReviewsView)
             };
         }
 
