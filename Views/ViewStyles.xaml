@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:ShopERP.ViewModels"
-                    xmlns:vw="clr-namespace:ShopERP.Views">
+                    xmlns:vw="clr-namespace:ShopERP.Views"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
 
     <!-- Style for the expanders for adding content -->
     <Style TargetType="Expander" x:Key="AddingExpander">
@@ -67,6 +68,11 @@
         <Setter Property="Margin" Value="0,0,0,5"/>
     </Style>
 
+    <!-- Style for the DatePicker with today's date as default -->
+    <Style TargetType="DatePicker" x:Key="AddingDatePicker">
+        <Setter Property="SelectedDate" Value="{x:Static sys:DateTime.Today}"/>
+    </Style>
+    
     <Style TargetType="GroupBox" x:Key="EditGroupBox">
         <Setter Property="Margin" Value="10,0,0,0"/>
         <Setter Property="BorderBrush" Value="Gray"/>
@@ -141,6 +147,18 @@
     </Style>
 
     <Style TargetType="CheckBox" x:Key="EditCheckBox" BasedOn="{StaticResource AddingCheckBox}">
+        <!--For editing-->
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding ElementName=editCheckBox, Path=IsChecked}" Value="True">
+                <Setter Property="IsEnabled" Value="True"/>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding ElementName=editCheckBox, Path=IsChecked}" Value="False">
+                <Setter Property="IsEnabled" Value="False"/>
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style TargetType="DatePicker" x:Key="EditDatePicker" BasedOn="{StaticResource AddingDatePicker}">
         <!--For editing-->
         <Style.Triggers>
             <DataTrigger Binding="{Binding ElementName=editCheckBox, Path=IsChecked}" Value="True">

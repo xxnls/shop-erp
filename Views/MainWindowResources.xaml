@@ -22,9 +22,17 @@
     <DataTemplate DataType="{x:Type vm:CustomersViewModel}">
         <vw:CustomersView/>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:SuppliersViewModel}">
         <vw:SuppliersView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vm:SalesViewModel}">
+        <vw:SalesView/>
+    </DataTemplate>
+    
+    <DataTemplate DataType="{x:Type vm:EquipmentViewModel}">
+        <vw:EquipmentView/>
     </DataTemplate>
     <!--#endregion-->
 
