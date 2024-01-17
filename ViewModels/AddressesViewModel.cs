@@ -178,6 +178,12 @@ namespace ShopERP.ViewModels
 
                 switch (columnName)
                 {
+                    case nameof(SelectedCountryId):
+                        if (SelectedCountryId == 0)
+                            result = "Country is required.";
+                        else
+                            ErrorCollection.Remove(nameof(SelectedCountryId));
+                        break;
                     case nameof(City):
                         if (string.IsNullOrEmpty(City))
                             result = "City name is required.";
@@ -273,22 +279,28 @@ namespace ShopERP.ViewModels
         
         public override void Edit()
         {
-            if (SelectedModel != null)
-            {
-                using (var dbContext = new DatabaseContext())
+            if (ErrorCollection.Count == 0)
+                if (SelectedModel != null)
                 {
-                    var address = dbContext.Addresses.Find(SelectedModel.AddressId);
-                    address.CountryId = SelectedModel.CountryId;
-                    address.City = SelectedModel.City;
-                    address.PostalCode = SelectedModel.PostalCode;
-                    address.StreetName = SelectedModel.StreetName;
-                    address.BuildingNumber = SelectedModel.BuildingNumber;
-                    address.ContactNumber = SelectedModel.ContactNumber;
-                    address.DateEdited = DateTime.Now;
-                    dbContext.SaveChanges();
-                    SelectedModel = null;
+                    using (var dbContext = new DatabaseContext())
+                    {
+                        var address = dbContext.Addresses.Find(SelectedModel.AddressId);
+                        address.CountryId = SelectedModel.CountryId;
+                        address.City = SelectedModel.City;
+                        address.PostalCode = SelectedModel.PostalCode;
+                        address.StreetName = SelectedModel.StreetName;
+                        address.BuildingNumber = SelectedModel.BuildingNumber;
+                        address.ContactNumber = SelectedModel.ContactNumber;
+                        address.DateEdited = DateTime.Now;
+                        dbContext.SaveChanges();
+                        SelectedModel = null;
+                    }
+                    Refresh();
                 }
-                Refresh();
+            else
+            {
+               string errorMessage = string.Join("\n", ErrorCollection.Values);
+               MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
