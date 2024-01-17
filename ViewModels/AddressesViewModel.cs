@@ -180,33 +180,33 @@ namespace ShopERP.ViewModels
                 {
                     case nameof(City):
                         if (string.IsNullOrEmpty(City))
-                        {
                             result = "City name is required.";
-                        }
+                        else
+                            ErrorCollection.Remove(nameof(City));
                         break;
                     case nameof(PostalCode):
                         if (string.IsNullOrEmpty(PostalCode))
-                        {
                             result = "Postal code is required.";
-                        }
+                        else
+                            ErrorCollection.Remove(nameof(PostalCode));
                         break;
                     case nameof(StreetName):
                         if (string.IsNullOrEmpty(StreetName))
-                        {
                             result = "Street name is required.";
-                        }
+                        else
+                            ErrorCollection.Remove(nameof(StreetName));
                         break;
                     case nameof(BuildingNumber):
                         if (string.IsNullOrEmpty(BuildingNumber))
-                        {
                             result = "Building number is required.";
-                        }
+                        else
+                            ErrorCollection.Remove(nameof(BuildingNumber));
                         break;
                     case nameof(ContactNumber):
                         if (string.IsNullOrEmpty(ContactNumber))
-                        {
                             result = "Contact number is required.";
-                        }
+                        else
+                            ErrorCollection.Remove(nameof(ContactNumber));
                         break;
                 }
 

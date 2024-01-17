@@ -30,9 +30,9 @@ namespace ShopERP.Views
         {
             addButton.IsChecked = false;
         }
-        private void ClearTextboxes_Click(object sender, RoutedEventArgs e)
-        {
-            ExpanderHelper.ClearTextBoxesInExpander(expander);
-        }
+        //private void ClearTextboxes_Click(object sender, RoutedEventArgs e)
+        //{
+        //    ExpanderHelper.ClearTextBoxesInExpander(expander);
+        //}
     }
 }

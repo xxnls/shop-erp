@@ -113,12 +113,12 @@
                         <ColumnDefinition/>
                         <ColumnDefinition Width="auto"/>
                     </Grid.ColumnDefinitions>
-                    <Button Grid.Column="0" Content="Save" Click="ClearTextboxes_Click" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,0,5" Padding="3"/>
+                    <Button Grid.Column="0" Content="Save" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="0,0,0,5" Padding="3"/>
                     
                     <Button Grid.Column="1" Content="Save and close" Command="{Binding SaveCommand}" HorizontalAlignment="Right" Margin="5,0,0,5" Padding="3">
                         <Button.Style>
                             <Style TargetType="Button">
-                                <EventSetter Event="Click" Handler="ClearTextboxes_Click"/>
+                                <!-- <EventSetter Event="Click" Handler="ClearTextboxes_Click"/> -->
                                 <EventSetter Event="Click" Handler="FoldExpander_Click"/>
                             </Style>
                         </Button.Style>
