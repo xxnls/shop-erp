@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.IO;
 using ShopERP.ViewModels.BaseViewModels;
+using System.ComponentModel.DataAnnotations;
 
 namespace ShopERP.ViewModels
 {
@@ -155,12 +156,60 @@ namespace ShopERP.ViewModels
             }
         }
         #endregion
+
+        #region Constructors
         public AddressesViewModel() : base(GlobalResources.Address)
         {
             Countries = new ObservableCollection<Country>(GetCountries());
             RefreshStatistics();
         }
+        #endregion
 
+        #region Validation
+        public string this[string columnName]
+        {
+            get
+            {
+                string? result = null;
+                switch (columnName)
+                {
+                    case nameof(City):
+                        if (string.IsNullOrEmpty(City))
+                        {
+                            result = "City is required.";
+                        }
+                        break;
+                    case nameof(PostalCode):
+                        if (string.IsNullOrEmpty(PostalCode))
+                        {
+                            result = "Postal code is required.";
+                        }
+                        break;
+                    case nameof(StreetName):
+                        if (string.IsNullOrEmpty(StreetName))
+                        {
+                            result = "Street name is required.";
+                        }
+                        break;
+                    case nameof(BuildingNumber):
+                        if (string.IsNullOrEmpty(BuildingNumber))
+                        {
+                            result = "Building number is required.";
+                        }
+                        break;
+                    case nameof(ContactNumber):
+                        if (string.IsNullOrEmpty(ContactNumber))
+                        {
+                            result = "Contact number is required.";
+                        }
+                        break;
+                }
+                return result;
+            }
+        }
+        #endregion
+
+        #region Methods
         public override IEnumerable<Address> GetModels()
         {
             using (var dbContext = new DatabaseContext())
@@ -239,5 +288,6 @@ namespace ShopERP.ViewModels
             Statistics_USACount = Models.Count(address => address.Country.CountryName == "United States" && address.DateDeleted == null);
             Statistics_FranceCount = Models.Count(address => address.Country.CountryName == "France" && address.DateDeleted == null);
         }
+        #endregion
     }
 }

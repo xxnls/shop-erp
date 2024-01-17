@@ -3,6 +3,7 @@ using ShopERP.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,11 +15,11 @@ namespace ShopERP.ViewModels.BaseViewModels
     /// Abstract class responsible for all view models with mostly CRUD operations.
     /// </summary>
     
-    public abstract class BaseObjectViewModel<T> : WorkspaceViewModel where T : class
+    public abstract class BaseObjectViewModel<T> : WorkspaceViewModel, IDataErrorInfo where T : class
     {
         #region Properties and Fields
+        public string Error => null;
         public ObservableCollection<T> Models { get; set; }
-
         public ICommand RefreshCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
@@ -51,6 +52,8 @@ namespace ShopERP.ViewModels.BaseViewModels
                 }
             }
         }
+
+        public string this[string columnName] => throw new NotImplementedException();
         #endregion
 
         protected BaseObjectViewModel(string name) : base(name)
