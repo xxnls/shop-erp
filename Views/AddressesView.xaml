@@ -85,11 +85,11 @@
 
                 <Image Grid.Row="1" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/cityIcon.png" Style="{StaticResource AddingIcon}"/>
                 <Label Grid.Row="1" Grid.Column="1" Content="City: " Margin="0,0,0,5"/>
-                <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding City}" Style="{StaticResource AddingTextBox}"/>
+                <TextBox Grid.Row="1" Grid.Column="2" Text="{Binding City, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[City]}" Style="{StaticResource AddingTextBox}"/>
 
                 <Image Grid.Row="2" Grid.Column="0" Source="pack://application:,,,/ShopERP;component/Content/Icons/streetIcon.png" Style="{StaticResource AddingIcon}"/>
                 <Label Grid.Row="2" Grid.Column="1" Content="Street: " Margin="0,0,0,5"/>
-                <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding StreetName}" Style="{StaticResource AddingTextBox}"/>
+                <TextBox Grid.Row="2" Grid.Column="2" Text="{Binding StreetName, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[StreetName]}" Style="{StaticResource AddingTextBox}"/>
 
                 <Separator Width="20" Grid.Row="0" Grid.Column="3" Background="Transparent"/>
                 <Separator Width="20" Grid.Row="1" Grid.Column="3" Background="Transparent"/>
@@ -97,15 +97,15 @@
 
                 <Image Grid.Row="0" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/buildingNumberIcon.png" Style="{StaticResource AddingIcon}"/>
                 <Label Grid.Row="0" Grid.Column="5" Content="Building No.: " Margin="0,0,0,5"/>
-                <TextBox Grid.Row="0" Grid.Column="6" Text="{Binding BuildingNumber}" Style="{StaticResource AddingTextBox}"/>
+                <TextBox Grid.Row="0" Grid.Column="6" Text="{Binding BuildingNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[BuildingNumber]}" Style="{StaticResource AddingTextBox}"/>
 
                 <Image Grid.Row="1" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/postalCodeIcon.png" Style="{StaticResource AddingIcon}"/>
                 <Label Grid.Row="1" Grid.Column="5" Content="Postal Code: " Margin="0,0,0,5"/>
-                <TextBox Grid.Row="1" Grid.Column="6" Text="{Binding PostalCode}" Style="{StaticResource AddingTextBox}"/>
+                <TextBox Grid.Row="1" Grid.Column="6" Text="{Binding PostalCode, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[PostalCode]}" Style="{StaticResource AddingTextBox}"/>
 
                 <Image Grid.Row="2" Grid.Column="4" Source="pack://application:,,,/ShopERP;component/Content/Icons/contactIcon.png" Style="{StaticResource AddingIcon}"/>
                 <Label Grid.Row="2" Grid.Column="5" Content="Contact No.: " Margin="0,0,0,5"/>
-                <TextBox Grid.Row="2" Grid.Column="6" Text="{Binding ContactNumber}"  Style="{StaticResource AddingTextBox}"/>
+                <TextBox Grid.Row="2" Grid.Column="6" Text="{Binding ContactNumber, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" ToolTip="{Binding ErrorCollection[ContactNumber]}"  Style="{StaticResource AddingTextBox}"/>
 
                 <!-- Save buttons -->
                 <Grid Grid.Column="7" Grid.Row="3">

@@ -39,6 +39,8 @@ namespace ShopERP.ViewModels
                 }
             }
         }
+
+        public override string this[string columnName] => throw new NotImplementedException();
         #endregion
 
         public SuppliersViewModel() : base("Suppliers")

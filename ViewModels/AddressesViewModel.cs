@@ -16,12 +16,16 @@ using System.Runtime.CompilerServices;
 using System.IO;
 using ShopERP.ViewModels.BaseViewModels;
 using System.ComponentModel.DataAnnotations;
+using System.Windows;
+using System.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace ShopERP.ViewModels
 {
     public class AddressesViewModel : BaseObjectViewModel<Address>
     {
         #region Properties and Fields
+        public Dictionary<string, string> ErrorCollection { get; private set; } = new();
         public ObservableCollection<Country> Countries { get; set; }
 
         private int _selectedCountryId;
@@ -166,17 +170,18 @@ namespace ShopERP.ViewModels
         #endregion
 
         #region Validation
-        public string this[string columnName]
+        public override string this[string columnName]
         {
             get
             {
-                string? result = null;
+                string result = null;
+
                 switch (columnName)
                 {
                     case nameof(City):
                         if (string.IsNullOrEmpty(City))
                         {
-                            result = "City is required.";
+                            result = "City name is required.";
                         }
                         break;
                     case nameof(PostalCode):
@@ -204,6 +209,18 @@ namespace ShopERP.ViewModels
                         }
                         break;
                 }
+
+                if(ErrorCollection.ContainsKey(columnName))
+                {
+                    ErrorCollection[columnName] = result;
+                }
+                else if(result != null)
+                {
+                    ErrorCollection.Add(columnName, result);
+                }
+
+                OnPropertyChanged(() => ErrorCollection);
+
                 return result;
             }
         }
@@ -228,22 +245,30 @@ namespace ShopERP.ViewModels
         }
         public override void Save()
         {
-            using (var dbContext = new DatabaseContext())
+            if (ErrorCollection.Count == 0)
             {
-                var address = new Address
+                using (var dbContext = new DatabaseContext())
                 {
-                    CountryId = SelectedCountryId,
-                    City = City,
-                    PostalCode = PostalCode,
-                    StreetName = StreetName,
-                    BuildingNumber = BuildingNumber,
-                    ContactNumber = ContactNumber,
-                    DateCreated = DateTime.Now
-                };
-                dbContext.Addresses.Add(address);
-                dbContext.SaveChanges();
+                    var address = new Address
+                    {
+                        CountryId = SelectedCountryId,
+                        City = City,
+                        PostalCode = PostalCode,
+                        StreetName = StreetName,
+                        BuildingNumber = BuildingNumber,
+                        ContactNumber = ContactNumber,
+                        DateCreated = DateTime.Now
+                    };
+                    dbContext.Addresses.Add(address);
+                    dbContext.SaveChanges();
+                }
+                Refresh();
             }
-            Refresh();
+            else
+            {
+                string errorMessage = string.Join("\n", ErrorCollection.Values);
+                MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         
         public override void Edit()

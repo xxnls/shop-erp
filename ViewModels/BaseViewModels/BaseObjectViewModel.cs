@@ -18,7 +18,7 @@ namespace ShopERP.ViewModels.BaseViewModels
     public abstract class BaseObjectViewModel<T> : WorkspaceViewModel, IDataErrorInfo where T : class
     {
         #region Properties and Fields
-        public string Error => null;
+        public string Error { get { return null; } }
         public ObservableCollection<T> Models { get; set; }
         public ICommand RefreshCommand { get; set; }
         public ICommand SaveCommand { get; set; }
@@ -52,8 +52,6 @@ namespace ShopERP.ViewModels.BaseViewModels
                 }
             }
         }
-
-        public string this[string columnName] => throw new NotImplementedException();
         #endregion
 
         protected BaseObjectViewModel(string name) : base(name)
@@ -79,5 +77,7 @@ namespace ShopERP.ViewModels.BaseViewModels
             }
         }
         public abstract IEnumerable<T> GetModels();
+
+        public abstract string this[string columnName] { get; }
     }
 }
