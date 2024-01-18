@@ -37,6 +37,20 @@
                 <Image Source="pack://application:,,,/ShopERP;component/Content/Icons/removeIcon.png" Width="22" Height="16"/>
             </Button>
         </StackPanel>
+        <!-- Filter by name -->
+
+        <StackPanel Orientation="Horizontal" Grid.Row="0">
+            <Label Content="Filter by:" Margin="100,0,0,0"/>
+            <ComboBox ItemsSource="{Binding FilterOptions}"
+                      SelectedValue="{Binding SelectedFilterOption}"
+                      Width="100"
+                      Margin="5,0,0,0"/>
+            <TextBox Text="{Binding FilterText}" Width="150" Margin="5,0,0,0" Style="{StaticResource AddingTextBox}"/>
+            <Button Content="Filter" Command="{Binding FilterCommand}" Width="50" Margin="5,0,0,0"/>
+            <Button Content="Clear" Command="{Binding ClearCommand}" Width="50" Margin="5,0,0,0"/>
+            <Label Content="{Binding DataGridInfoText}" Margin="5,0,0,0" Foreground="Red"/>
+        </StackPanel>
+        
         <!-- Right side of toolbar (refresh button, time) -->
         <Grid HorizontalAlignment="Right" Grid.Row="0" Height="auto">
             <Grid.ColumnDefinitions>

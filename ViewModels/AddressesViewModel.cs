@@ -19,6 +19,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Windows;
 using System.Configuration;
 using Microsoft.IdentityModel.Tokens;
+using System.Text.RegularExpressions;
 
 namespace ShopERP.ViewModels
 {
@@ -27,6 +28,7 @@ namespace ShopERP.ViewModels
         #region Properties and Fields
         public Dictionary<string, string> ErrorCollection { get; private set; } = new();
         public ObservableCollection<Country> Countries { get; set; }
+        public ObservableCollection<string> FilterOptions { get; set; }
 
         private int _selectedCountryId;
         public int SelectedCountryId
@@ -165,6 +167,7 @@ namespace ShopERP.ViewModels
         public AddressesViewModel() : base(GlobalResources.Address)
         {
             Countries = new ObservableCollection<Country>(GetCountries());
+            FilterOptions = new ObservableCollection<string> { "ID", "City", "Country", "Street", "Postal Code" };
             RefreshStatistics();
         }
         #endregion
@@ -193,6 +196,8 @@ namespace ShopERP.ViewModels
                     case nameof(PostalCode):
                         if (string.IsNullOrEmpty(PostalCode))
                             result = "Postal code is required.";
+                        else if (!Regex.IsMatch(PostalCode, @"^\d+$"))
+                            result = "Postal code must contain only numbers.";
                         else
                             ErrorCollection.Remove(nameof(PostalCode));
                         break;
@@ -205,16 +210,20 @@ namespace ShopERP.ViewModels
                     case nameof(BuildingNumber):
                         if (string.IsNullOrEmpty(BuildingNumber))
                             result = "Building number is required.";
+                        else if (!Regex.IsMatch(BuildingNumber, @"^\d+$"))
+                            result = "Building number must contain only numbers.";
                         else
                             ErrorCollection.Remove(nameof(BuildingNumber));
-                        break;
+                    break;
                     case nameof(ContactNumber):
                         if (string.IsNullOrEmpty(ContactNumber))
                             result = "Contact number is required.";
+                        else if (!Regex.IsMatch(ContactNumber, @"^\d+$"))
+                            result = "Contact number must contain only numbers.";
                         else
                             ErrorCollection.Remove(nameof(ContactNumber));
                         break;
-                }
+            }
 
                 if(ErrorCollection.ContainsKey(columnName))
                 {
@@ -247,6 +256,39 @@ namespace ShopERP.ViewModels
             using (var dbContext = new DatabaseContext())
             {
                 return dbContext.Countries.ToList();
+            }
+        }
+        public override void Filter()
+        {
+            if (FilterText != null)
+            {
+                foreach (var model in Models.ToList())
+                {
+                    switch (SelectedFilterOption)
+                    {
+                        case "ID":
+                            if (model.AddressId.ToString() != FilterText)
+                                Models.Remove(model);
+                            break;
+                        case "Country":
+                            if (model.Country.CountryName != FilterText)
+                                Models.Remove(model);
+                            break;
+                        case "City":
+                            if (model.City != FilterText)
+                                Models.Remove(model);
+                            break;
+                        case "Street":
+                            if (model.StreetName != FilterText)
+                                Models.Remove(model);
+                            break;
+                        case "Postal Code":
+                            if (model.PostalCode != FilterText)
+                                Models.Remove(model);
+                            break;
+                    }
+                }
+                DataGridCheck();
             }
         }
         public override void Save()

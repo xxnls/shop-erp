@@ -192,6 +192,11 @@ namespace ShopERP.ViewModels
                                           .ToList();
             }
         }
+
+        public override void Filter()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

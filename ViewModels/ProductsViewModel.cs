@@ -169,5 +169,10 @@ namespace ShopERP.ViewModels
             }
             Refresh();
         }
+
+        public override void Filter()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -167,6 +167,11 @@ namespace ShopERP.ViewModels
                 return dbContext.Equipment.Where(e => e.DateDeleted == null).ToList();
             }
         }
+
+        public override void Filter()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

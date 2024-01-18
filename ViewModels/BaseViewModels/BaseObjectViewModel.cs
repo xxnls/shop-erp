@@ -19,11 +19,66 @@ namespace ShopERP.ViewModels.BaseViewModels
     {
         #region Properties and Fields
         public string Error { get { return null; } }
-        public ObservableCollection<T> Models { get; set; }
+
+        private ObservableCollection<T> _models;
+        public ObservableCollection<T> Models
+        {
+            get { return _models; }
+            set
+            {
+                if (_models != value)
+                {
+                    _models = value;
+                    OnPropertyChanged(() => Models);
+                }
+            }
+        }
         public ICommand RefreshCommand { get; set; }
         public ICommand SaveCommand { get; set; }
         public ICommand DeleteCommand { get; set; }
         public ICommand EditCommand { get; set; }
+        public ICommand FilterCommand { get; set; }
+        public ICommand ClearCommand { get; set; }
+
+        private string? _dataGridInfoText;
+        public string? DataGridInfoText
+        {
+            get { return _dataGridInfoText; }
+            set
+            {
+                if (_dataGridInfoText != value)
+                {
+                    _dataGridInfoText = value;
+                    OnPropertyChanged(() => DataGridInfoText);
+                }
+            }
+        }
+        private string? _selectedFilterOption;
+        public string? SelectedFilterOption
+        {
+            get { return _selectedFilterOption; }
+            set
+            {
+                if (_selectedFilterOption != value)
+                {
+                    _selectedFilterOption = value;
+                    OnPropertyChanged(() => SelectedFilterOption);
+                }
+            }
+        }
+        private string? _filterText;
+        public string? FilterText
+        {
+            get { return _filterText; }
+            set
+            {
+                if (_filterText != value)
+                {
+                    _filterText = value;
+                    OnPropertyChanged(() => FilterText);
+                }
+            }
+        }
 
         private T? _selectedModel;
         public T? SelectedModel
@@ -54,6 +109,7 @@ namespace ShopERP.ViewModels.BaseViewModels
         }
         #endregion
 
+        #region Constructors
         protected BaseObjectViewModel(string name) : base(name)
         {
             RefreshTime = DateTime.Now.ToString("HH:mm:ss");
@@ -61,12 +117,36 @@ namespace ShopERP.ViewModels.BaseViewModels
             SaveCommand = new BaseCommand(() => Save());
             DeleteCommand = new BaseCommand(() => Delete());
             EditCommand = new BaseCommand(() => Edit());
+            FilterCommand = new BaseCommand(() => Filter());
+            ClearCommand = new BaseCommand(() => Clear());
             Models = new ObservableCollection<T>(GetModels());
         }
+        #endregion
 
+        #region Methods
         public abstract void Save();
         public abstract void Delete();
         public abstract void Edit();
+        public abstract IEnumerable<T> GetModels();
+        public abstract string this[string columnName] { get; }
+        public abstract void Filter();
+        public void DataGridCheck()
+        {
+            if (Models.Count == 0)
+            {
+                DataGridInfoText = "No data to display.";
+            }
+            else
+            {
+                DataGridInfoText = null;
+            }
+        }
+        public void Clear()
+        {
+            FilterText = null;
+            Refresh();
+        }
+
         public void Refresh()
         {
             RefreshTime = DateTime.Now.ToString("HH:mm:ss");
@@ -75,9 +155,9 @@ namespace ShopERP.ViewModels.BaseViewModels
             {
                 Models.Add(model);
             }
+            DataGridCheck();
         }
-        public abstract IEnumerable<T> GetModels();
-
-        public abstract string this[string columnName] { get; }
+        
+        #endregion
     }
 }
