@@ -44,58 +44,6 @@ namespace ShopERP.ViewModels
             }
         }
 
-        private int _statistics_AddressCount;
-        public int Statistics_AddressCount
-        {
-            get { return _statistics_AddressCount; }
-            set
-            {
-                if (_statistics_AddressCount != value)
-                {
-                    _statistics_AddressCount = value;
-                    OnPropertyChanged(() => Statistics_AddressCount);
-                }
-            }
-        }
-        private int _statistics_PolandCount;
-        public int Statistics_PolandCount
-        {
-            get { return _statistics_PolandCount; }
-            set
-            {
-                if (_statistics_PolandCount != value)
-                {
-                    _statistics_PolandCount = value;
-                    OnPropertyChanged(() => Statistics_PolandCount);
-                }
-            }
-        }
-        private int _statistics_USACount;
-        public int Statistics_USACount
-        {
-            get { return _statistics_USACount; }
-            set
-            {
-                if (_statistics_USACount != value)
-                {
-                    _statistics_USACount = value;
-                    OnPropertyChanged(() => Statistics_USACount);
-                }
-            }
-        }
-        private int _statistics_FranceCount;
-        public int Statistics_FranceCount
-        {
-            get { return _statistics_FranceCount; }
-            set
-            {
-                if (_statistics_FranceCount != value)
-                {
-                    _statistics_FranceCount = value;
-                    OnPropertyChanged(() => Statistics_FranceCount);
-                }
-            }
-        }
         private string _city;
         public string City
         {
@@ -168,7 +116,6 @@ namespace ShopERP.ViewModels
         {
             Countries = new ObservableCollection<Country>(GetCountries());
             FilterOptions = new ObservableCollection<string> { "ID", "City", "Country", "Street", "Postal Code" };
-            RefreshStatistics();
         }
         #endregion
 
@@ -258,38 +205,27 @@ namespace ShopERP.ViewModels
                 return dbContext.Countries.ToList();
             }
         }
-        public override void Filter()
+        public override void Filter(ObservableCollection<Address> models)
         {
-            if (FilterText != null)
+            switch (SelectedFilterOption)
             {
-                foreach (var model in Models.ToList())
-                {
-                    switch (SelectedFilterOption)
-                    {
-                        case "ID":
-                            if (model.AddressId.ToString() != FilterText)
-                                Models.Remove(model);
-                            break;
-                        case "Country":
-                            if (model.Country.CountryName != FilterText)
-                                Models.Remove(model);
-                            break;
-                        case "City":
-                            if (model.City != FilterText)
-                                Models.Remove(model);
-                            break;
-                        case "Street":
-                            if (model.StreetName != FilterText)
-                                Models.Remove(model);
-                            break;
-                        case "Postal Code":
-                            if (model.PostalCode != FilterText)
-                                Models.Remove(model);
-                            break;
-                    }
-                }
-                DataGridCheck();
+                case "ID":
+                    Models = new ObservableCollection<Address>(models.Where(item => item.AddressId.Equals(FilterText)));
+                    break;
+                case "Country":
+                    Models = new ObservableCollection<Address>(models.Where(item => item.CountryId.Equals(FilterText)));
+                    break;
+                case "City":
+                    Models = new ObservableCollection<Address>(models.Where(item => item.City.Contains(FilterText)));
+                    break;
+                case "Street":
+                    Models = new ObservableCollection<Address>(models.Where(item => item.StreetName.Contains(FilterText)));
+                    break;
+                case "Postal Code":
+                    Models = new ObservableCollection<Address>(models.Where(item => item.PostalCode.Contains(FilterText)));
+                    break;
             }
+            DataGridCheck();
         }
         public override void Save()
         {
@@ -358,14 +294,6 @@ namespace ShopERP.ViewModels
                 }
                 Refresh();
             }
-        }
-
-        public void RefreshStatistics()
-        {
-            Statistics_AddressCount = Models.Count(address => address.DateDeleted == null);
-            Statistics_PolandCount = Models.Count(address => address.Country.CountryName == "Poland" && address.DateDeleted == null);
-            Statistics_USACount = Models.Count(address => address.Country.CountryName == "United States" && address.DateDeleted == null);
-            Statistics_FranceCount = Models.Count(address => address.Country.CountryName == "France" && address.DateDeleted == null);
         }
         #endregion
     }

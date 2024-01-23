@@ -1,5 +1,6 @@
 ﻿using ShopERP.Helpers;
 using ShopERP.ViewModels.BaseViewModels;
+using ShopERP.ViewModels.Other;
 using ShopERP.ViewResources;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,7 @@ namespace ShopERP.ViewModels
         public ICommand OpenSalesView { get => new BaseCommand(() => CreateView(new SalesViewModel())); }
         public ICommand OpenEquipmentView { get => new BaseCommand(() => CreateView(new EquipmentViewModel())); }
         public ICommand OpenReviewsView { get => new BaseCommand(() => CreateView(new ReviewsViewModel())); }
+        public ICommand OpenStatsView { get => new BaseCommand(() => CreateView(new ProductStatsViewModel())); }
 
         #endregion
 
@@ -75,7 +77,8 @@ namespace ShopERP.ViewModels
                 new ("Suppliers", OpenSuppliersView),
                 new ("Sales", OpenSalesView),
                 new ("Equipment", OpenEquipmentView),
-                new ("Reviews", OpenReviewsView)
+                new ("Reviews", OpenReviewsView),
+                new ("Product Stats", OpenStatsView)
             };
         }
 

@@ -26,8 +26,8 @@ namespace ShopERP.ViewModels
             }
         }
 
-        private DateOnly _equipmentAcquireDate;
-        public DateOnly EquipmentAcquireDate
+        private DateTime _equipmentAcquireDate;
+        public DateTime EquipmentAcquireDate
         {
             get { return _equipmentAcquireDate; }
             set
@@ -40,8 +40,8 @@ namespace ShopERP.ViewModels
             }
         }
 
-        private DateOnly? _equipmentServiceDate;
-        public DateOnly? EquipmentServiceDate
+        private DateTime? _equipmentServiceDate;
+        public DateTime? EquipmentServiceDate
         {
             get { return _equipmentServiceDate; }
             set
@@ -168,7 +168,7 @@ namespace ShopERP.ViewModels
             }
         }
 
-        public override void Filter()
+        public override void Filter(ObservableCollection<Equipment> models)
         {
             throw new NotImplementedException();
         }

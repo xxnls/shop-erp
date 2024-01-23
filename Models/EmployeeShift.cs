@@ -17,7 +17,7 @@ public partial class EmployeeShift
     [Column("ShiftID")]
     public int ShiftId { get; set; }
 
-    public DateOnly ShiftDate { get; set; }
+    public DateTime ShiftDate { get; set; }
 
     [Column(TypeName = "datetime")]
     public DateTime DateCreated { get; set; }

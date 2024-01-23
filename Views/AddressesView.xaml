@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:viewmodels="clr-namespace:ShopERP.ViewModels"
+             xmlns:ShopERP="clr-namespace:ShopERP.Custom"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -171,26 +172,7 @@
 
             <!-- Statistics -->
             <GroupBox Header="Statistics" Background="LightGray" BorderBrush="Gray">
-                <StackPanel Grid.Row="0" Grid.Column="0" Margin="0,5,0,0" Orientation="Horizontal">
-                    <Grid x:Name="statistics">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="auto"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel Grid.Column="0" Orientation="Vertical">
-                            <Label Content="Addresses from Poland:"/>
-                            <Label Content="Addresses from USA:"/>
-                            <Label Content="Addresses from France:"/>
-                            <Label Content="Total Addresses:"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="1" Orientation="Vertical">
-                            <Label Content="{Binding Statistics_PolandCount}"/>
-                            <Label Content="{Binding Statistics_USACount}"/>
-                            <Label Content="{Binding Statistics_FranceCount}"/>
-                            <Label Content="{Binding Statistics_AddressCount}"/>
-                        </StackPanel>
-                    </Grid>
-                </StackPanel>
+                <ShopERP:StatisticsCustomControl/>
             </GroupBox>
             
             <!-- Statistics and Model info -->

@@ -12,9 +12,9 @@ public partial class Shift
     [Column("ShiftID")]
     public int ShiftId { get; set; }
 
-    public TimeOnly ShiftStartTime { get; set; }
+    public DateTime ShiftStartTime { get; set; }
 
-    public TimeOnly ShiftEndTime { get; set; }
+    public DateTime ShiftEndTime { get; set; }
 
     public double ShiftTotalHours { get; set; }
 

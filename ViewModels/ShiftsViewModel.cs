@@ -12,8 +12,8 @@ namespace ShopERP.ViewModels
     public class ShiftsViewModel : BaseObjectViewModel<Shift>
     {
         #region Properties and Fields
-        private TimeOnly _shiftStartTime;
-        public TimeOnly ShiftStartTime
+        private DateTime _shiftStartTime;
+        public DateTime ShiftStartTime
         {
             get { return _shiftStartTime; }
             set
@@ -26,8 +26,8 @@ namespace ShopERP.ViewModels
             }
         }
 
-        private TimeOnly _shiftEndTime;
-        public TimeOnly ShiftEndTime
+        private DateTime _shiftEndTime;
+        public DateTime ShiftEndTime
         {
             get { return _shiftEndTime; }
             set
@@ -120,7 +120,7 @@ namespace ShopERP.ViewModels
             }
         }
 
-        public override void Filter()
+        public override void Filter(ObservableCollection<Shift> models)
         {
             throw new NotImplementedException();
         }

@@ -1,5 +1,6 @@
 ﻿using ShopERP.Helpers;
 using ShopERP.Models;
+using ShopERP.BusinessLogic;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -39,6 +40,62 @@ namespace ShopERP.ViewModels.BaseViewModels
         public ICommand EditCommand { get; set; }
         public ICommand FilterCommand { get; set; }
         public ICommand ClearCommand { get; set; }
+
+        #region Statistics Properties
+        private int _newestID;
+        public int NewestID
+        {
+            get { return _newestID; }
+            set
+            {
+                if (_newestID != value)
+                {
+                    _newestID = value;
+                    OnPropertyChanged(() => NewestID);
+                }
+            }
+        }
+        private int _activeID;
+        public int ActiveID
+        {
+            get { return _activeID; }
+            set
+            {
+                if (_activeID != value)
+                {
+                    _activeID = value;
+                    OnPropertyChanged(() => ActiveID);
+                }
+            }
+        }
+        private int _deletedID;
+        public int DeletedID
+        {
+            get { return _deletedID; }
+            set
+            {
+                if (_deletedID != value)
+                {
+                    _deletedID = value;
+                    OnPropertyChanged(() => DeletedID);
+                }
+            }
+        }
+        private int _totalID;
+        public int TotalID
+        {
+            get { return _totalID; }
+            set
+            {
+                if (_totalID != value)
+                {
+                    _totalID = value;
+                    OnPropertyChanged(() => TotalID);
+                }
+            }
+        }
+
+        #endregion
 
         private string? _dataGridInfoText;
         public string? DataGridInfoText
@@ -117,7 +174,7 @@ namespace ShopERP.ViewModels.BaseViewModels
             SaveCommand = new BaseCommand(() => Save());
             DeleteCommand = new BaseCommand(() => Delete());
             EditCommand = new BaseCommand(() => Edit());
-            FilterCommand = new BaseCommand(() => Filter());
+            FilterCommand = new BaseCommand(() => Filter(Models));
             ClearCommand = new BaseCommand(() => Clear());
             Models = new ObservableCollection<T>(GetModels());
         }
@@ -129,7 +186,7 @@ namespace ShopERP.ViewModels.BaseViewModels
         public abstract void Edit();
         public abstract IEnumerable<T> GetModels();
         public abstract string this[string columnName] { get; }
-        public abstract void Filter();
+        public abstract void Filter(ObservableCollection<T> Models);
         public void DataGridCheck()
         {
             if (Models.Count == 0)

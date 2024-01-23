@@ -170,7 +170,7 @@ namespace ShopERP.ViewModels
             Refresh();
         }
 
-        public override void Filter()
+        public override void Filter(ObservableCollection<Product> models)
         {
             throw new NotImplementedException();
         }

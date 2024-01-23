@@ -193,7 +193,7 @@ namespace ShopERP.ViewModels
             }
         }
 
-        public override void Filter()
+        public override void Filter(ObservableCollection<Employee> models)
         {
             throw new NotImplementedException();
         }

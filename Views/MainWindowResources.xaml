@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:vm="clr-namespace:ShopERP.ViewModels"
-                    xmlns:vw="clr-namespace:ShopERP.Views">
+                    xmlns:vw="clr-namespace:ShopERP.Views"
+                    xmlns:vmo="clr-namespace:ShopERP.ViewModels.Other">
     <!--#region ViewModels -->
     <DataTemplate DataType="{x:Type vm:AddressesViewModel}">
         <vw:AddressesView/>
@@ -34,9 +35,13 @@
     <DataTemplate DataType="{x:Type vm:EquipmentViewModel}">
         <vw:EquipmentView/>
     </DataTemplate>
-    
+
     <DataTemplate DataType="{x:Type vm:ReviewsViewModel}">
         <vw:ReviewsView/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type vmo:ProductStatsViewModel}">
+        <vw:ProductStatsView/>
     </DataTemplate>
     <!--#endregion-->
 

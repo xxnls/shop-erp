@@ -1,0 +1,44 @@
+﻿<UserControl x:Class="ShopERP.Views.ProductStatsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ShopERP.Views"
+             xmlns:Other="clr-namespace:ShopERP.ViewModels.Other"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <d:UserControl.DataContext>
+        <Other:ProductStatsViewModel/>
+    </d:UserControl.DataContext>
+
+    <StackPanel>
+        <StackPanel.DataContext>
+            <Other:ProductStatsViewModel/>
+        </StackPanel.DataContext>
+        <UniformGrid Columns="3">
+            <Label Content="Product"/>
+            <Label Content="Start Date"/>
+            <Label Content="End Date"/>
+
+            <ComboBox ItemsSource="{Binding Products}"
+                      SelectedValue="{Binding SelectedProductId}"
+                      SelectedValuePath="ProductId"
+                      DisplayMemberPath="ProductName"/>
+            <DatePicker SelectedDate="{Binding StartDate}"/>
+            <DatePicker SelectedDate="{Binding EndDate}"/>
+        </UniformGrid>
+
+        <Button Content="Calculate" Command="{Binding CalculateCommand}"/>
+
+        <UniformGrid Columns="3">
+            <Label Content="Total Base Price"/>
+            <Label Content="Total Tax Amount"/>
+            <Label Content="Total Taxed Price"/>
+
+            <TextBox Text="{Binding TotalBasePrice}"/>
+            <TextBox Text="{Binding TotalTaxAmount}"/>
+            <TextBox Text="{Binding TotalTaxedPrice}"/>
+        </UniformGrid>
+    </StackPanel>
+</UserControl>

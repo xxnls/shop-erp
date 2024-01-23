@@ -15,9 +15,9 @@ public partial class Equipment
     [StringLength(100)]
     public string EquipmentName { get; set; } = null!;
 
-    public DateOnly EquipmentAcquireDate { get; set; }
+    public DateTime EquipmentAcquireDate { get; set; }
 
-    public DateOnly? EquipmentServiceDate { get; set; }
+    public DateTime? EquipmentServiceDate { get; set; }
 
     [Column(TypeName = "money")]
     public decimal? EquipmentBoughtPrice { get; set; }
